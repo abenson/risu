@@ -52,14 +52,7 @@ module Risu
 				#
 				# @return [String] of hosts \n delimited
 				def ip_list
-					ips = Array.new
-					hosts = Host.where("ip is not NULL").order("ip").to_a
-
-					hosts.each do |host|
-						ips << host.ip if host.ip != nil
-					end
-
-					ips.join("\n")
+					Host.where("ip is not NULL").map { |h| h.ip }.uniq.join("\n")
 				end
 
 				# Queries for hosts with a Windows based Operating System
