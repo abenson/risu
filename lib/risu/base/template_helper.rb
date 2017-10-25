@@ -131,6 +131,11 @@ module Risu
 			end
 
 			#
+			def image image
+				@output.image image, :scale => 0.25, :position => :center
+			end
+
+			#
 			def item_count_by_plugin_name plugin_name
 				begin
 					return Item.where(:plugin_id => Plugin.where(:plugin_name => plugin_name).first.id).count
